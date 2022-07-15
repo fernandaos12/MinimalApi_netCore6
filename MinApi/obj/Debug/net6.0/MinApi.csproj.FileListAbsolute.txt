@@ -25,3 +25,7 @@ D:\workspace\csharp\ApiMinCatalogo\MinApi\bin\Debug\net6.0\Swashbuckle.AspNetCor
 D:\workspace\csharp\ApiMinCatalogo\MinApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\workspace\csharp\ApiMinCatalogo\MinApi\obj\Debug\net6.0\MinApi.MvcApplicationPartsAssemblyInfo.cs
 D:\workspace\csharp\ApiMinCatalogo\MinApi\obj\Debug\net6.0\MinApi.csproj.CopyComplete
+D:\workspace\csharp\ApiMinCatalogo\MinApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\workspace\csharp\ApiMinCatalogo\MinApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\workspace\csharp\ApiMinCatalogo\MinApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\workspace\csharp\ApiMinCatalogo\MinApi\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
