@@ -6,6 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 //habilitar o swagger como serviço
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var app = builder.Build();
+
+app.UseSwagger();
+
+
+app.UseSwaggerUI();
+
+await app.RunAsync();
+
 //adicionando serviço usando tempo de vida AddSingleton incluindo testeService como dependencia na colecao de servicos
 builder.Services.AddSingleton<TesteService>(new TesteService());
 
@@ -13,15 +22,12 @@ builder.Services.AddSingleton<TesteService>(new TesteService());
 builder.Services.AddDbContext<AppDbContext>(options=>
    options.UseInMemoryDatabase("Livros"));
 
-
-var app = builder.Build();
-
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
 
-app.UseSwagger();
+
 app.MapGet("/", () => "Bem Vindo a Api");
 
 //acessando servico
@@ -57,7 +63,7 @@ app.MapPut("/Livros/{id}", async(int id, Livro livro, AppDbContext dbContext) =>
     }
 );
 
-app.MapDelete("/Cliente/{id}", async (int id, AppDbContext dbContext) =>
+ app.MapDelete("/Cliente/{id}", async (int id, AppDbContext dbContext) =>
     {
         var livro = await dbContext.Livros.FirstOrDefaultAsync(a=> a.Id == id);
         if(livro != null)
@@ -69,11 +75,7 @@ app.MapDelete("/Cliente/{id}", async (int id, AppDbContext dbContext) =>
     });
 
 
-app.UseSwaggerUI();
 
-await app.RunAsync();
-
-public record Catalogo(string descricao, string autor);
 
 public class TesteService
 {
