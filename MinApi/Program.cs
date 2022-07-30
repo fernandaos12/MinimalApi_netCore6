@@ -18,9 +18,6 @@ await app.RunAsync();
 //adicionando serviço usando tempo de vida AddSingleton incluindo testeService como dependencia na colecao de servicos
 builder.Services.AddSingleton<TesteService>(new TesteService());
 
-//Adicionando DBContext para EF depois de adicionar o package Microsoft.EntityFrameworkCore.InMemory
-builder.Services.AddDbContext<AppDbContext>(options=>
-   options.UseInMemoryDatabase("Livros"));
 
 if (app.Environment.IsDevelopment())
 {
