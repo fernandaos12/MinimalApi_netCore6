@@ -1,21 +1,27 @@
 using System;
-
+using static MinApi.Data.LivroContext;
+using System.Data.SqlClient;
 
 namespace MinApi.Extentions
 {
-    public static WebApplicationBuilder AddPersistence(this webApplicationBuilder builder)
+    public static class ServiceCollectionExtensions
     {
-        builder.Services.AddScoped<GetConnection>(p=>
-        async () =>
+    //metodo de extensao
+        public static WebApplicationBuilder AddPersistence(this WebApplicationBuilder builder)
         {
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            var connection = new SqlConnection(connectionString);
+            builder.Services.AddScoped<GetConnection>(p=>
+            async () =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                var connection = new SqlConnection(connectionString);
 
-            await connection.OpenAsync();
-            return connection;
-        });
+                await connection.OpenAsync();
+                return connection;
+            });
 
-        return builder;
+            return builder;
+        }
+
     }
 }
 

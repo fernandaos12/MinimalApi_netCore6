@@ -5,7 +5,7 @@ namespace MinApi.Data;
 
 [Table("Livro")]
 
-public record Livro(int Id, string descricao, string autor, int anoPublicacao);
+public record Livro(int Id, string titulo, string autor, int anoPublicacao);
 
 
 //Record - tipo de estrutura de dados, 
