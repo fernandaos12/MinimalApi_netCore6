@@ -25,53 +25,6 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.MapGet("/", () => "Bem Vindo a Api");
-
-//acessando servico
-app.MapGet("/boasvindas", (HttpContext context, TesteService testeservice) =>
-            testeservice.BoasVindas(context.Request.Query["nome"].ToString()));
-
-//consumindo por model
-app.MapGet("/catalogo", () => new Catalogo("livro01", "autor01"));
-
-//consumindo pelo httpRest
-app.MapGet("/album", async () =>
-    await new HttpClient().GetStringAsync("https://jsonplaceholder.typicode.com/albums"));
-
-//consumindo de um EF
-app.MapGet("/Livros/{id}", async (int id, AppDbContext dbContext) =>
-            {
-               await dbContext.Livros.FirstOrDefaultAsync(a=> a.Id == id);
-            });
-
-app.MapPost("/Livros/", async (Livro livro, AppDbContext dbContext) =>
-    {
-        dbContext.Livros.Add(livro);
-        await dbContext.SaveChangesAsync();
-        return livro;
-    }
-);
-
-app.MapPut("/Livros/{id}", async(int id, Livro livro, AppDbContext dbContext) =>
-    {
-        dbContext.Entry(livro).State = EntityState.Modified;
-        await dbContext.SaveChangesAsync();
-        return livro;
-    }
-);
-
- app.MapDelete("/Cliente/{id}", async (int id, AppDbContext dbContext) =>
-    {
-        var livro = await dbContext.Livros.FirstOrDefaultAsync(a=> a.Id == id);
-        if(livro != null)
-        {
-            dbContext.Livros.Remove(livro);
-            await dbContext.SaveChangesAsync();
-        }
-        return;
-    });
-
-
 
 
 public class TesteService
